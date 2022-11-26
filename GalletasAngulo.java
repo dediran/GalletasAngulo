@@ -1,5 +1,6 @@
 /*
-   VERSION 0
+   VERSION 0 CAR
+   VERSION 1 RAM
 */
 import java.util.Scanner;
 public class GalletasAngulo{
@@ -10,15 +11,15 @@ public class GalletasAngulo{
            
       //inicio do-while
       do {
-          //Menú
+          //MenÃº
       System.out.println("INVENTARIO GALLETAS ANGULO");
-      System.out.print("¿Qué es lo que desea hacer? [1-6]");
+      System.out.print("Â¿QuÃ© es lo que desea hacer? [1-6]");
       System.out.println("[1] Registro de galletas");
       System.out.println("[2] Consultar tipo de galleta");
       System.out.println("[3] Consultar todas las galletas");
       System.out.println("[4] Modificar datos de galletas");
       System.out.println("[5] Eliminar datos de galletas");
-      System.out.println("[6] Finalizar");
+      System.out.println("[6] Finalizar\n");
       resp = leer.nextInt();
 
          
@@ -39,11 +40,11 @@ public class GalletasAngulo{
             
                break;
             case6:
-               System.out.println("Programadores:De La Cruz Cervantes Ramses & Roman García Andrea Carolina");
-               System.out.println("Fecha: 03/Diciembre/2022");
+               System.out.println("Programadores:De La Cruz Cervantes Ramses\nRoman GarcÃ­a Andrea Carolina");
+               //System.out.println("Fecha: 03/Diciembre/2022");
                break;
             default: System.out.println("!ERROR numero no valido");
          }
-      } while (resp!=6);
+      } while (resp != 6);
    }
 }
