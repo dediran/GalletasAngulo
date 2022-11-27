@@ -13,6 +13,7 @@ public class GalletasAngulo{
       boolean stock[] = new boolean[10];
       int resp,cont = 0;
       char puntoBool;
+      boolean indicador = true;
       
           
       do {
@@ -30,26 +31,36 @@ public class GalletasAngulo{
             case 1:
                System.out.printf("\nclave[%d]: ",cont);
                claves[cont] = leer.nextInt();
-               for(int i = 0; i<cont; i++){
-                   if(claves[cont] == claves[i]){
-                     System.out.println("ESTA CLAVE ESTA REPETIDA\n");
-                     cont--;
-                   }else{
-                        leer.nextLine();
-                        System.out.printf("nombre del paquete[%d]",cont);
-                        nombres[cont] = leer.nextLine();
-                        System.out.printf("precio del paquete[%d]",cont);
-                        precios[cont] = leer.nextFloat();
-                        System.out.printf("tamaño del paquete[%d]",cont);
-                        tamallos[cont] = leer.next().charAt(0);
-                        System.out.printf("hay disponibles en el almacen? [s = SI] , [n = NO]");
-                        puntoBool = leer.next().charAt(0);
-                        if(puntoBool == 's'|| puntoBool == 'S'){
-                           stock[cont] = true;
-                        }else if(puntoBool == 'n' || puntoBool == 'N'){
-                           stock[cont] = false;
-                        }
-                   }                      
+               for(int i = -1; i<cont; i++){
+                  if(cont == 0 && i == -1){
+                     indicador = true;
+                     break;
+                  }
+                  if(claves[cont] == claves[i+1]){
+                     indicador = false;              
+                     break;
+                  }else{
+                     indicador = true;
+                  }                
+               }
+               if(indicador){
+                  leer.nextLine();
+                  System.out.printf("nombre del paquete[%d]",cont);
+                  nombres[cont] = leer.nextLine();
+                  System.out.printf("precio del paquete[%d]",cont);
+                  precios[cont] = leer.nextFloat();
+                  System.out.printf("tamaño del paquete[%d]",cont);
+                  tamallos[cont] = leer.next().charAt(0);
+                  System.out.printf("hay disponibles en el almacen? [s = SI] , [n = NO]");
+                  puntoBool = leer.next().charAt(0);
+                  if(puntoBool == 's'|| puntoBool == 'S'){
+                     stock[cont] = true;
+                  }else if(puntoBool == 'n' || puntoBool == 'N'){
+                     stock[cont] = false;
+                  }
+               }else{
+                  System.out.println("ESTA CLAVE ESTA REPETIDA\n");
+                  cont--;
                }
                cont++;
                break;
