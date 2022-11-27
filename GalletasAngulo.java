@@ -8,11 +8,11 @@ public class GalletasAngulo{
    public static void main(String args[]){
       Scanner leer = new Scanner(System.in);
       int claves[] = new int[4];
-      String nombres[] = new String[4];
-      float precios[] = new float[4];
-      char tamallos[] = new char[4];
-      boolean stock[] = new boolean[4];
-      int resp,cont = 1;
+      String nombres[] = new String[4], auxNom;
+      float precios[] = new float[4], auxPres;
+      char tamallos[] = new char[4], auxTam;
+      boolean stock[] = new boolean[4], auxStock;
+      int resp,cont = 1,contG = 0,auxCl;
       char puntoBool;
       boolean indicador = true,espacio = true;
       
@@ -29,7 +29,7 @@ public class GalletasAngulo{
          resp = leer.nextInt();
       
          switch (resp){
-            case 1:
+            case 1://altas
                   //cuando el espacio este lleno 
                   if (cont-1 == claves.length){
                      espacio = false;   
@@ -94,22 +94,53 @@ public class GalletasAngulo{
                   System.out.println("\nEL ESPACIO ESTA LLENO\n");
                }   
                break;
-            case 2:
+            case 2: // consulta invidual
                //falta esto
                break;
-            case 3:
-               //FALTA ESTO
-               for(int x = 0; x < 4; x++){
-                  System.out.printf("clave[%d] = %d | nombre[%d] = %s  | precio[%d] = %.2f  | tamaño[%d] = %S   |  stock[%d] = %s\n", x, claves[x], x, nombres[x], x, precios[x], x, tamallos[x], x, stock[x]);
+            case 3: // consulta general
+               for(int x = 0; x<claves.length; x++){
+                 if(claves[x] == 0){
+                  contG++;
+                 }
                }
+               if(contG != claves.length){
+                  for(int i = 0; i<claves.length-1; i++){
+                     for(int j = 0; j<claves.length-1-i; j++){
+                        if(claves[j] > claves[j+1]){
+                           auxCl = claves[j];
+                           claves[j] = claves[j+1];
+                           claves[j+1] = auxCl;
+                           auxNom = nombres[j];
+                           nombres[j] = nombres[j+1];
+                           nombres[j+1] = auxNom;
+                           auxPres = precios[j];
+                           precios[j] = precios[j+1];
+                           precios[j+1] = auxPres;
+                           auxTam = tamallos[j];
+                           tamallos[j] = tamallos[j+1];
+                           tamallos[j+1] = auxTam;
+                           auxStock = stock[j];
+                           stock[j] = stock[j+1];
+                           stock[j+1] = auxStock;
+                        }
+                     }
+                  }
+                  for(int x = 0; x<claves.length; x++){
+                     if(claves[x] != 0){
+                       System.out.printf("clave[%d] = %d | nombre[%d] = %s  | precio[%d] = %.2f  | tamaño[%d] = %S   |  stock[%d] = %s\n", x, claves[x], x, nombres[x], x, precios[x], x, tamallos[x], x, stock[x]);
+                     }
+                  }
+               }else{
+                     System.out.println("El Invetario esta Vacio");
+                  }  
                break;
-            case 4:
+            case 4: // modificaciones
                //FALTA ESTO
                break;
-            case 5:
+            case 5: // bajas
                //FALTA ESTO
                break;
-            case 6:
+            case 6: // fin
                System.out.println("\nProgramadores:De La Cruz Cervantes Ramses\nRoman García Andrea Carolina");
                System.out.println("Fecha: 03/Diciembre/2022");
                break;
