@@ -1,6 +1,7 @@
 /*
    VERSION 0 CAR
    VERSION 1 RAM
+   VERSION 2 RAM
 */
 import java.util.Scanner;
 public class GalletasAngulo{
@@ -29,12 +30,14 @@ public class GalletasAngulo{
       
          switch (resp){
             case 1:
+                  //cuando el espacio este lleno 
                   if (cont-1 == claves.length){
                      espacio = false;   
                   }else {
                      espacio = true;
                   }
                if(espacio){
+                  //evaluacion del rango de 1 a 111
                   do{
                      System.out.printf("\nclave[%d]: ",cont-1);
                      claves[cont-1] = leer.nextInt();
@@ -42,7 +45,16 @@ public class GalletasAngulo{
                         indicador = false;
                      }
                   }while(indicador);
+                  //parte que verifica que las claves no sean repetidas
+                  /*
+                     aqui lo que se realizo un cont que enpieza en 1
+                     los arreglos enpiezan desde el 0 asi que ponemos como el cont-1
+                     en la entrada de los demas datos tmabien encontraras este cont-1
+                     asi que para ver como funciona es 
+                     cont = 1   para arreglos es cont-1
+                  */
                   for(int i = 0; i<cont; i++){
+                  //aqui es cont = 1 por que sabemos que la primera vez que entra
                      if(cont == 1 && i == 0){
                         indicador = true;
                         break;
@@ -83,18 +95,19 @@ public class GalletasAngulo{
                }   
                break;
             case 2:
-            
+               //falta esto
                break;
             case 3:
+               //FALTA ESTO
                for(int x = 0; x < 4; x++){
                   System.out.printf("clave[%d] = %d | nombre[%d] = %s  | precio[%d] = %.2f  | tamaño[%d] = %S   |  stock[%d] = %s\n", x, claves[x], x, nombres[x], x, precios[x], x, tamallos[x], x, stock[x]);
                }
                break;
             case 4:
-            
+               //FALTA ESTO
                break;
             case 5:
-            
+               //FALTA ESTO
                break;
             case 6:
                System.out.println("\nProgramadores:De La Cruz Cervantes Ramses\nRoman García Andrea Carolina");
