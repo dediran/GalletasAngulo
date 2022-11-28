@@ -2,6 +2,7 @@
    VERSION 0 CAR
    VERSION 1 RAM
    VERSION 2 RAM
+   VERSION 3 CAR
 */
 import java.util.Scanner;
 public class GalletasAngulo{
@@ -12,14 +13,14 @@ public class GalletasAngulo{
       float precios[] = new float[4], auxPres;
       char tamallos[] = new char[4], auxTam;
       boolean stock[] = new boolean[4], auxStock;
-      int resp,cont = 1,contG = 0,auxCl;
+      int resp,cont = 1,contG = 0,auxCl, opc, contC=0, clave, celda;
       char puntoBool;
-      boolean indicador = true,espacio = true;
+      boolean indicador = true,espacio = true, encontrar=false;
       
           
       do {
          System.out.println("INVENTARIO GALLETAS ANGULO");
-         System.out.println("Â¿QuÃ© es lo que desea hacer? [1-6]");
+         System.out.println("¿Qué es lo que desea hacer? [1-6]");
          System.out.println("[1] Registro de galletas");
          System.out.println("[2] Consultar un paquete de galletas");
          System.out.println("[3] Consultar todos los paquetes de galletas");
@@ -76,7 +77,7 @@ public class GalletasAngulo{
                      nombres[cont-1] = leer.nextLine();
                      System.out.printf("precio del paquete[%d]",cont-1);
                      precios[cont-1] = leer.nextFloat();
-                     System.out.printf("tamaÃ±o del paquete[%d]",cont-1);
+                     System.out.printf("tamaño del paquete[%d]",cont-1);
                      tamallos[cont-1] = leer.next().charAt(0);
                      System.out.printf("hay disponibles en el almacen? [s = SI] , [n = NO]");
                      puntoBool = leer.next().charAt(0);
@@ -95,7 +96,32 @@ public class GalletasAngulo{
                }   
                break;
             case 2: // consulta invidual
-               //falta esto
+              if(cont >0){
+               System.out.println("CONSULTAR TIPO DE GALLETA");
+               System.out.println("Ingrese a clave de las galletas");
+               clave = leer.nextInt();
+               if (clave>=1 && clave<=111) {
+                  celda=-1;
+                  for (int x = 0; x < contC; x++) {
+                     if(clave ==claves[x]) {
+                        celda= x;
+                        break;
+                     }
+                  }
+                  if (celda!=1 ) {
+                     System.out.println("Nombre: " +nombres[celda]);
+                     System.out.println("Precio: $" +precios[celda]);
+                     System.out.println("Tamaño:  " +tamallos[celda]);
+                     System.out.printf("\n¿Hay en almacen? %d", stock[cont]);
+                  } else {
+                     System.out.println("\nNo existe ningunas galletas con esa clave" + clave);
+                  } 
+               }else {
+                  System.out.println("\nClave no valida");
+               }
+              }else {
+              System.out.println("\nNo existe esa clave");
+              }
                break;
             case 3: // consulta general
                for(int x = 0; x<claves.length; x++){
@@ -127,7 +153,7 @@ public class GalletasAngulo{
                   }
                   for(int x = 0; x<claves.length; x++){
                      if(claves[x] != 0){
-                       System.out.printf("clave[%d] = %d | nombre[%d] = %s  | precio[%d] = %.2f  | tamaÃ±o[%d] = %S   |  stock[%d] = %s\n", x, claves[x], x, nombres[x], x, precios[x], x, tamallos[x], x, stock[x]);
+                       System.out.printf("clave[%d] = %d | nombre[%d] = %s  | precio[%d] = %.2f  | tamaño[%d] = %S   |  stock[%d] = %s\n", x, claves[x], x, nombres[x], x, precios[x], x, tamallos[x], x, stock[x]);
                      }
                   }
                }else{
@@ -141,7 +167,7 @@ public class GalletasAngulo{
                //FALTA ESTO
                break;
             case 6: // fin
-               System.out.println("\nProgramadores:De La Cruz Cervantes Ramses\nRoman GarcÃ­a Andrea Carolina");
+               System.out.println("\nProgramadores:De La Cruz Cervantes Ramses\nRoman García Andrea Carolina");
                System.out.println("Fecha: 03/Diciembre/2022");
                break;
             default: System.out.println("\n!ERROR numero no valido\n");
