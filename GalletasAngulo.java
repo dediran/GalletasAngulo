@@ -1,177 +1,92 @@
 /*
-   VERSION 0 CAR
-   VERSION 1 RAM
-   VERSION 2 RAM
-   VERSION 3 CAR
+   VERSION 0
 */
 import java.util.Scanner;
 public class GalletasAngulo{
    public static void main(String args[]){
       Scanner leer = new Scanner(System.in);
-      int claves[] = new int[4];
-      String nombres[] = new String[4], auxNom;
-      float precios[] = new float[4], auxPres;
-      char tamallos[] = new char[4], auxTam;
-      boolean stock[] = new boolean[4], auxStock;
-      int resp,cont = 1,contG = 0,auxCl, opc, contC=0, clave, celda;
-      char puntoBool;
-      boolean indicador = true,espacio = true, encontrar=false;
+      final int TAM_ARREGLO = 3;
+      int claves[]= new int[TAM_ARREGLO];
+      String nombres[]= new String[TAM_ARREGLO];
+      String sabores[]= new String[TAM_ARREGLO];
+      float precios[]= new float[TAM_ARREGLO];
+      int cantidades[]= new int[TAM_ARREGLO];
+      int resp, cont=0, clave;
+      boolean existe;
       
-          
+           
+      //inicio do-while
       do {
-         System.out.println("INVENTARIO GALLETAS ANGULO");
-         System.out.println("¿Qué es lo que desea hacer? [1-6]");
-         System.out.println("[1] Registro de galletas");
-         System.out.println("[2] Consultar un paquete de galletas");
-         System.out.println("[3] Consultar todos los paquetes de galletas");
-         System.out.println("[4] Modificar datos de los paquetes de galletas");
-         System.out.println("[5] Eliminar datos de los paquetes de galletas");
-         System.out.print("[6] Finalizar\n");
-         resp = leer.nextInt();
+          //Menú
+      System.out.println("INVENTARIO GALLETAS ANGULO");
+      System.out.print("¿Qué es lo que desea hacer? [1-6]");
+      System.out.println("[1] Registro de galletas");
+      System.out.println("[2] Consultar un tipo de galleta");
+      System.out.println("[3] Consultar todas las galletas");
+      System.out.println("[4] Modificar datos de galletas");
+      System.out.println("[5] Eliminar datos de galletas");
+      System.out.println("[6] Finalizar");
+      System.out.print("¿Que desea hacer? [1-6]");
+      resp = leer.nextInt();
       
-         switch (resp){
-            case 1://altas
-                  //cuando el espacio este lleno 
-                  if (cont-1 == claves.length){
-                     espacio = false;   
-                  }else {
-                     espacio = true;
+      switch (resp) {
+         case 1:
+           if(cont < TAM_ARREGLO) {
+            System.out.println("\nREGISTRO DE GALLETAS ANGULO");
+            System.out.println("Ingrese la clave de la galletas");
+            clave = leer.nextInt();
+            if (clave >=1 && clave <=111) {
+               //buscar clave repetida
+               existe = false;
+               for(int x=0; x<cont; x++) {
+                  if(clave ==claves[x]) {
+                  existe =true;
+                  break;
+                     
                   }
-               if(espacio){
-                  //evaluacion del rango de 1 a 111
-                  do{
-                     System.out.printf("\nclave[%d]: ",cont-1);
-                     claves[cont-1] = leer.nextInt();
-                     if(claves[cont-1] >= 1 && claves[cont-1] <= 111){
-                        indicador = false;
-                     }
-                  }while(indicador);
-                  //parte que verifica que las claves no sean repetidas
-                  /*
-                     aqui lo que se realizo un cont que enpieza en 1
-                     los arreglos enpiezan desde el 0 asi que ponemos como el cont-1
-                     en la entrada de los demas datos tmabien encontraras este cont-1
-                     asi que para ver como funciona es 
-                     cont = 1   para arreglos es cont-1
-                  */
-                  for(int i = 0; i<cont; i++){
-                  //aqui es cont = 1 por que sabemos que la primera vez que entra
-                     if(cont == 1 && i == 0){
-                        indicador = true;
-                        break;
-                     }
-                     if(claves[cont-1] == claves[i]){
-                        if(cont-1 == i){
-                           break;
-                        }
-                        indicador = false;
-                        claves[cont-1] = 0;              
-                        break;
-                     }else{
-                        indicador = true;
-                     }                
-                  }
-                  if(indicador){
-                     leer.nextLine();
-                     System.out.printf("nombre del paquete[%d]",cont-1);
-                     nombres[cont-1] = leer.nextLine();
-                     System.out.printf("precio del paquete[%d]",cont-1);
-                     precios[cont-1] = leer.nextFloat();
-                     System.out.printf("tamaño del paquete[%d]",cont-1);
-                     tamallos[cont-1] = leer.next().charAt(0);
-                     System.out.printf("hay disponibles en el almacen? [s = SI] , [n = NO]");
-                     puntoBool = leer.next().charAt(0);
-                     if(puntoBool == 's'|| puntoBool == 'S'){
-                        stock[cont-1] = true;
-                     }else if(puntoBool == 'n' || puntoBool == 'N'){
-                        stock[cont-1] = false;
-                     }
-                  }else{
-                     System.out.println("ESTA CLAVE ESTA REPETIDA\n");
-                     cont--;
-                  }
+               }
+               //altas
+               if(existe==false){
+                  claves[cont]= clave;
+                  leer.nextLine();
+                  System.out.println("Nombre: ");
+                  nombres[cont]=leer.nextLine();
+                  System.out.println("Sabor: ");
+                  sabores[cont]=leer.nextLine();
+                  System.out.println("Precio: $");
+                  precios[cont]=leer.nextFloat();
+                  System.out.println("Cantidad de galletas: ");
+                  cantidades[cont]=leer.nextInt();
                   cont++;
                }else{
-                  System.out.println("\nEL ESPACIO ESTA LLENO\n");
-               }   
-               break;
-            case 2: // consulta invidual
-              if(cont >0){
-               System.out.println("CONSULTAR TIPO DE GALLETA");
-               System.out.println("Ingrese a clave de las galletas");
-               clave = leer.nextInt();
-               if (clave>=1 && clave<=111) {
-                  celda=-1;
-                  for (int x = 0; x < contC; x++) {
-                     if(clave ==claves[x]) {
-                        celda= x;
-                        break;
-                     }
-                  }
-                  if (celda!=1 ) {
-                     System.out.println("Nombre: " +nombres[celda]);
-                     System.out.println("Precio: $" +precios[celda]);
-                     System.out.println("Tamaño:  " +tamallos[celda]);
-                     System.out.printf("\n¿Hay en almacen? %d", stock[cont]);
-                  } else {
-                     System.out.println("\nNo existe ningunas galletas con esa clave" + clave);
-                  } 
-               }else {
-                  System.out.println("\nClave no valida");
+                  System.out.println("\nLa clave:["+ clave +"] ya fue utilizada");
                }
-              }else {
-              System.out.println("\nNo existe esa clave");
-              }
-               break;
-            case 3: // consulta general
-               for(int x = 0; x<claves.length; x++){
-                 if(claves[x] == 0){
-                  contG++;
-                 }
-               }
-               if(contG != claves.length){
-                  for(int i = 0; i<claves.length-1; i++){
-                     for(int j = 0; j<claves.length-1-i; j++){
-                        if(claves[j] > claves[j+1]){
-                           auxCl = claves[j];
-                           claves[j] = claves[j+1];
-                           claves[j+1] = auxCl;
-                           auxNom = nombres[j];
-                           nombres[j] = nombres[j+1];
-                           nombres[j+1] = auxNom;
-                           auxPres = precios[j];
-                           precios[j] = precios[j+1];
-                           precios[j+1] = auxPres;
-                           auxTam = tamallos[j];
-                           tamallos[j] = tamallos[j+1];
-                           tamallos[j+1] = auxTam;
-                           auxStock = stock[j];
-                           stock[j] = stock[j+1];
-                           stock[j+1] = auxStock;
-                        }
-                     }
-                  }
-                  for(int x = 0; x<claves.length; x++){
-                     if(claves[x] != 0){
-                       System.out.printf("clave[%d] = %d | nombre[%d] = %s  | precio[%d] = %.2f  | tamaño[%d] = %S   |  stock[%d] = %s\n", x, claves[x], x, nombres[x], x, precios[x], x, tamallos[x], x, stock[x]);
-                     }
-                  }
-               }else{
-                     System.out.println("El Invetario esta Vacio");
-                  }  
-               break;
-            case 4: // modificaciones
-               //FALTA ESTO
-               break;
-            case 5: // bajas
-               //FALTA ESTO
-               break;
-            case 6: // fin
-               System.out.println("\nProgramadores:De La Cruz Cervantes Ramses\nRoman García Andrea Carolina");
-               System.out.println("Fecha: 03/Diciembre/2022");
-               break;
-            default: System.out.println("\n!ERROR numero no valido\n");
-         }
-      }while (resp != 6);
+            }else {
+               System.out.println("\nLa clave no es valida");
+            }
+           } else {
+            System.out.println("NO HAY ESPACIO DISPONIBLE");
+           }
+            break;
+         case 2:
+         
+            break;
+         case 3:
+         
+            break;
+         case 4:
+         
+            break;
+         case 5:
+         
+            break;
+         case 6:
+            System.out.println("PROGRAMADORES: Andrea Carolina Roman García && Ramses De La Cruz Cervantes");
+            System.out.println("Fecha: 29/11/2022");
+            break;
+         default:
+            System.out.println("La opcion no es valida");
+      }
+      } while (resp != 6);
    }
-}
+}      
