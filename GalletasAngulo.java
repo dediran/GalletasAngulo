@@ -1,12 +1,8 @@
-/*
-   VERSION 4 CARO
-   VERSION TERMINADA
-*/
 import java.util.Scanner;
 public class GalletasAngulo{
    public static void main(String args[]){
       Scanner leer = new Scanner(System.in);
-      final int TAM_ARREGLO = 3;
+      final int TAM_ARREGLO = 100;
       int claves[]= new int[TAM_ARREGLO];
       String nombres[]= new String[TAM_ARREGLO];
       String sabores[]= new String[TAM_ARREGLO];
@@ -16,12 +12,10 @@ public class GalletasAngulo{
       boolean existe;
       char respuesta;
       
-           
-      //inicio do-while
       do {
-          //Menú
-      System.out.println("INVENTARIO GALLETAS ANGULO");
-      System.out.print("¿Qué es lo que desea hacer? [1-6]\n");
+          //MenÃº
+      System.out.println("\nINVENTARIO GALLETAS ANGULO");
+      System.out.print("Â¿QuÃ© es lo que desea hacer? [1-6]\n");
       System.out.println("[1] Registro de galletas");
       System.out.println("[2] Consultar un tipo de galleta");
       System.out.println("[3] Consultar todas las galletas");
@@ -34,7 +28,7 @@ public class GalletasAngulo{
          case 1:
            if(cont < TAM_ARREGLO) {
             System.out.println("\nREGISTRO DE GALLETAS ANGULO");
-            System.out.println("Ingrese la clave de la galletas");
+            System.out.print("Ingrese la clave de la galletas: ");
             clave = leer.nextInt();
             if (clave >=1 && clave <=111) {
                //buscar clave repetida
@@ -43,20 +37,19 @@ public class GalletasAngulo{
                   if(clave ==claves[x]) {
                   existe =true;
                   break;
-                     
                   }
                }
                //altas
                if(existe==false){
                   claves[cont]= clave;
                   leer.nextLine();
-                  System.out.print("\nNombre: ");
+                  System.out.print("Nombre: ");
                   nombres[cont]=leer.nextLine();
-                  System.out.print("\nSabor: ");
+                  System.out.print("Sabor: ");
                   sabores[cont]=leer.nextLine();
-                  System.out.print("\nPrecio: $");
+                  System.out.print("Precio: $");
                   precios[cont]=leer.nextFloat();
-                  System.out.print("\nCantidad de galletas: ");
+                  System.out.print("Cantidad de galletas: ");
                   cantidades[cont]=leer.nextInt();
                   cont++;
                }else{
@@ -73,7 +66,7 @@ public class GalletasAngulo{
          //consultar tipo de galleta
             if(cont>0) {
                System.out.println("CONSULTAR UN TIPO DE GALLETAS");
-               System.out.println("Ingrese la clave de las galletas");
+               System.out.print("Ingrese la clave de las galletas: ");
                clave=leer.nextInt();
                if(clave>=1 && clave<=111) {
                   //Buscar galletas
@@ -85,6 +78,7 @@ public class GalletasAngulo{
                      }
                   }
                   if (celda!= -1) {
+                     System.out.printf("--------Paquete de galletas %d---------\n", celda);
                      System.out.println("Nombre: "+ nombres[celda]);
                      System.out.println("Sabor: "+ sabores[celda]);
                      System.out.println("Precio: $"+ precios[celda]);
@@ -137,13 +131,12 @@ public class GalletasAngulo{
                   }
                }
                for (int x=0; x<cont; x++) {
+                  System.out.printf("--------Paquete de galletas %d---------\n", x);
                   System.out.print("\nClave"+ claves[x]);
                   System.out.print("\nNombre: "+ nombres[x]);
                   System.out.print("\nSabor: "+ sabores[x]);
                   System.out.print("\nPrecio: $"+ precios[x]);
                   System.out.print("\nCantidad: "+ cantidades[x]);
-                  System.out.println(" ");
-                  System.out.println("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
                }
             } else {
                System.out.println("\nNO SE HA REGISTRADO NINGUN PAQUETE DE GALLETAS");
@@ -154,7 +147,7 @@ public class GalletasAngulo{
             //Modificar atleta
             if(cont>0) {
                System.out.println("MODIFICAR UN TIPO DE GALLETAS");
-               System.out.println("Ingrese la clave de las galletas");
+               System.out.print("Ingrese la clave de las galletas: ");
                clave=leer.nextInt();
                if(clave>=1 && clave<=111) {
                   //Buscar galletas
@@ -172,7 +165,7 @@ public class GalletasAngulo{
                         System.out.println("[3] Precio: $"+ precios[celda]);
                         System.out.println("[4] Cantidad: "+ cantidades[celda]);
                         System.out.println("[5] Ninguno");
-                        System.out.println("¿Que desea Modificar? [1-5]");
+                        System.out.println("Â¿Que desea Modificar? [1-5]");
                         cambio= leer.nextInt();
                         
                         switch (cambio) {
@@ -194,14 +187,12 @@ public class GalletasAngulo{
                               System.out.print("Ingrese el nuevo cantidad de galletas: ");
                               cantidades[celda]= leer.nextInt();
                               break;
-                            case 5:
-                              
-                              break;
+                              case 5:
+                                 break;
                             default:
                               System.out.println("Opcion no valida");
-
                         }
-                     } while (cambio!=5);
+                     }while (cambio != 5);
                   } else{
                      System.out.println("\n NO EXITE NINGUNA GALLETA CON ESTA CLAVE ("+ clave +")");
                   }
@@ -218,7 +209,7 @@ public class GalletasAngulo{
             //Eliminar Galletas
             if(cont>0) {
                System.out.println("\nELIMINAR UN TIPO DE GALLETAS");
-               System.out.println("Ingrese la clave de las galletas");
+               System.out.print("Ingrese la clave de las galletas: ");
                clave=leer.nextInt();
                if(clave>=1 && clave<=111) {
                   //Buscar galletas
@@ -235,7 +226,7 @@ public class GalletasAngulo{
                      System.out.println("Precio: $"+ precios[celda]);
                      System.out.println("Cantidad: "+ cantidades[celda]);
                      leer.nextLine();
-                     System.out.println(" ¿Seguro que desea eliminar estas galletas? [S/N]: ");
+                     System.out.println(" Â¿Seguro que desea eliminar estas galletas? [S/N]: ");
                      respuesta = leer.nextLine().charAt(0);
                      if (respuesta == 's'|| respuesta == 'S') {
                         //desplazamiento
@@ -262,7 +253,7 @@ public class GalletasAngulo{
 
             break;
          case 6:
-            System.out.println("PROGRAMADORES: Andrea Carolina Roman García && Ramses De La Cruz Cervantes");
+            System.out.println("PROGRAMADORES: Andrea Carolina Roman GarcÃ­a y Ramses De La Cruz Cervantes");
             System.out.println("Fecha: 29/11/2022");
             break;
          default:
