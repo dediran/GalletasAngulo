@@ -185,8 +185,7 @@ public class GalletasAnguloMetod{
                }
                break;
             case 6:
-               System.out.println("PROGRAMADORES: Andrea Carolina Roman García y Ramses De La Cruz Cervantes");
-               System.out.println("Fecha: 7/12/2022");
+               integrantesFecha();
                break;
             default:
                System.out.println("La opcion no es valida");
@@ -297,5 +296,9 @@ public class GalletasAnguloMetod{
               }
           }
       }
+   }
+   static void integrantesFecha(){
+      System.out.println("PROGRAMADORES: Andrea Carolina Roman García y Ramses De La Cruz Cervantes");
+      System.out.println("Fecha: 7/12/2022");
    } 
 }
