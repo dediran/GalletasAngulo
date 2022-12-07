@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GalletasAnguloMetod{
    static Scanner leer = new Scanner(System.in);
    public static void main(String args[]){
-      final int TAM_ARREGLO = 3;
+      final int TAM_ARREGLO = 100;
       int claves[]= new int[TAM_ARREGLO];
       String nombres[]= new String[TAM_ARREGLO], auxiliarCad = "";
       char tipo[]= new char[TAM_ARREGLO], auxiliarChar = ' ';
