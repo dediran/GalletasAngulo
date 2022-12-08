@@ -163,7 +163,7 @@ public class GalletasAnguloMetod{
                         respuesta = leer.nextLine().charAt(0);
                         if (respuesta == 's'|| respuesta == 'S') {
                         //desplazamiento
-                           for(int x=celda; x<cont-1; x++) {
+                           for(int x=celdaVery; x<cont-1; x++) {
                               claves[x]= claves[x+1];
                               nombres[x]= nombres[x+1];
                               tipo[x]= tipo[x+1];
